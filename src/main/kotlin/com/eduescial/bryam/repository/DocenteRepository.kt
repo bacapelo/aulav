@@ -1,7 +1,7 @@
-package repository
+package com.eduescial.bryam.repository
 
 
-import model.Docente
+import com.eduescial.bryam.model.Docente
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface DocenteRepository: JpaRepository<Docente, Long> {

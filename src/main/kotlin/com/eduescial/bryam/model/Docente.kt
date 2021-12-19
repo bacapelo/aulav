@@ -1,10 +1,10 @@
-package model
+package com.eduescial.bryam.model
 
 import javax.persistence.*
 
 @Entity
-@Table(name = "alumno")
-class Alumno {
+@Table(name = "docente")
+class Docente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(updatable = false)
@@ -13,6 +13,7 @@ class Alumno {
     var cedula : Long? = null
     var nombre : String? = null
     var apellido: String? = null
-    var edad: String?=null
-    var discapacidad: String? = null
+    var edad: Long?=null
+    var celular : Long? = null
+    var email: String? = null
 }

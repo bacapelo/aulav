@@ -1,8 +1,7 @@
-package repository
+package com.eduescial.bryam.repository
 
 
-import model.Alumno
-import model.Asignatura
+import com.eduescial.bryam.model.Asignatura
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface AsignaturaRepository: JpaRepository<Asignatura, Long> {

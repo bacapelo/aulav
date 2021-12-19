@@ -1,10 +1,10 @@
-package controller
+package com.eduescial.bryam.controller
 
 
-import model.Asignatura
+import com.eduescial.bryam.model.Asignatura
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import service.AsignaturaService
+import com.eduescial.bryam.service.AsignaturaService
 
 @RestController
 @RequestMapping("/asignatura")

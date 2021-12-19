@@ -1,9 +1,9 @@
-package controller
+package com.eduescial.bryam.controller
 
-import model.Docente
+import com.eduescial.bryam.model.Docente
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import service.DocenteService
+import com.eduescial.bryam.service.DocenteService
 
 @RestController
 @RequestMapping("/docente")

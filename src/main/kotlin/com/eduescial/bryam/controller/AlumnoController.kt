@@ -1,12 +1,13 @@
-package controller
+package com.eduescial.bryam.controller
 
-import model.Alumno
+import com.eduescial.bryam.model.Alumno
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import service.AlumnoService
+import com.eduescial.bryam.service.AlumnoService
+
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/alumno")
 @CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT])
 
 class AlumnoController {
@@ -16,6 +17,7 @@ class AlumnoController {
 
     @GetMapping
     fun list(): List<Alumno>{
+
         return alumnoService.list()
     }
     @PostMapping

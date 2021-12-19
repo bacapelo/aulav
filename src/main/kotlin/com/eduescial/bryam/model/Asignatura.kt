@@ -1,4 +1,4 @@
-package model
+package com.eduescial.bryam.model
 
 import javax.persistence.*
 
@@ -13,7 +13,7 @@ class Asignatura {
 
     var materia : String? = null
     @Column(name="alumno_id")
-    var alumnoId : String? = null
+    var alumnoId : Long? = null
     @Column(name="docente_id")
-    var dacenteId : String? = null
+    var dacenteId : Long? = null
 }
