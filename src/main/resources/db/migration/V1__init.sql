@@ -3,17 +3,17 @@ CREATE TABLE IF NOT EXISTS  alumno (
     cedula NUMERIC (10) NOT NULL,
     nombre VARCHAR(45) NOT NULL,
     apellido VARCHAR(45) NULL,
-    edad NUMERIC (45) NULL,
+    edad VARCHAR (45) NULL,
     discapacidad VARCHAR(45) NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS  docente (
     id serial,
-    cedula NUMERIC (10) NOT NULL,
+    cedula VARCHAR (10) NOT NULL,
     nombre VARCHAR(45) NOT NULL,
     apellido VARCHAR(45) NULL,
     edad VARCHAR (45) NULL,
-    celular NUMERIC (45) NULL,
+    celular VARCHAR (45) NULL,
     email VARCHAR(45) NULL,
     PRIMARY KEY (id)
     );

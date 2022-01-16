@@ -20,13 +20,10 @@ class DocenteService {
     @PostMapping
     fun save  (docente: Docente): Docente {
         try {
-            docente.nombre?.takeIf {it.trim()?.isEmpty() }
-            val response = docenteRepository.findById(docente.id)
-                    ?: throw Exception("El id ${docente.id} el docente no existe")
-            response.apply {
-                this.nombre = docente.nombre
-            }
+            docente.nombre?.takeIf {it.trim()?.isNotEmpty()}
+                    ?: throw Exception("no puede estar vacio el nombre")
             return docenteRepository.save(docente)
+
         }
         catch (ex: Exception) {
             throw ResponseStatusException(
@@ -35,6 +32,7 @@ class DocenteService {
     }
     @PutMapping
     fun update (docente: Docente): Docente {
+
         try {
             docente.nombre?.takeIf {it.trim()?.isEmpty() }
             val response = docenteRepository.findById(docente.id)
@@ -52,7 +50,7 @@ class DocenteService {
     fun updateDescripcion(docente: Docente): Docente {
         try {
             docente.nombre?.takeIf {it.trim()?.isEmpty() }
-                    ?: throw java.lang.Exception("el nombre no puede ser vacio")
+
 
             val response = docenteRepository.findById(docente.id)
                     ?: throw Exception("El id ${docente.id} el docente no existe")
@@ -68,6 +66,13 @@ class DocenteService {
     }
     fun delete (id:Long): Boolean{
         docenteRepository.deleteById(id)
+        return true
+
+    }
+    fun verifyWord(nombre: String?): Boolean{
+        if(nombre?.length!!<3){
+            return false
+        }
         return true
     }
 }

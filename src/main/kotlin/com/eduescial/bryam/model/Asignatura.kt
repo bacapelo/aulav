@@ -15,5 +15,5 @@ class Asignatura {
     @Column(name="alumno_id")
     var alumnoId : Long? = null
     @Column(name="docente_id")
-    var dacenteId : Long? = null
+    var docenteId : Long? = null
 }

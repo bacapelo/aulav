@@ -22,18 +22,14 @@ class AlumnoService {
     @PostMapping
     fun save  (alumno: Alumno):Alumno{
         try {
-            alumno.nombre?.takeIf {it.trim()?.isEmpty() }
-                    ?: throw java.lang.Exception("el nombre no puede estar vacio")
-            val response = alumnoRepository.findById(alumno.id)
-                    ?: throw Exception("El id ${alumno.id} el docente no existe")
-            response.apply {
-                this.nombre= alumno.nombre
-            }
+            alumno.nombre?.takeIf {it.trim()?.isNotEmpty()}
+                    ?: throw Exception("no puede estar vacio el nombre")
             return alumnoRepository.save(alumno)
+
         }
         catch (ex: Exception) {
-            throw ResponseStatusException(
-                    HttpStatus.NOT_FOUND, ex.message, ex)
+           throw ResponseStatusException(
+                  HttpStatus.NOT_FOUND, ex.message, ex)
         }
     }
 
@@ -45,11 +41,11 @@ class AlumnoService {
     fun updateDescripcion(alumno: Alumno):Alumno {
         try {
             alumno.nombre?.takeIf {it.trim()?.isEmpty() }
-                    ?: throw java.lang.Exception("el nombre no puede estar vacio")
+
             val response = alumnoRepository.findById(alumno.id)
-                    ?: throw Exception()
+                    ?: throw Exception("El id ${alumno.id} el alumno no existe")
             response.apply {
-                this.nombre = alumno.nombre
+                this.nombre= alumno.nombre
             }
             return alumnoRepository.save(alumno)
         }

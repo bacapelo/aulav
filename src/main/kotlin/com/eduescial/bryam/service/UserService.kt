@@ -1,5 +1,6 @@
 package com.eduescial.bryam.service
 
+import com.eduescial.bryam.model.Docente
 import com.eduescial.bryam.model.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -17,6 +18,11 @@ class UserService {
 
         return userRepository.findAll()
     }
+
+    fun save  (user: User): User {
+
+            return userRepository.save(user)
+    }
     fun getUser  (username:String?): User? {
         try {
             val response = userRepository.findByUsername(username)
@@ -32,4 +38,26 @@ class UserService {
     fun update (user: User): User {
             return userRepository.save(user)
         }
+
+    fun calcMultiplication(index:Int, number: Int): Int {
+        if (index % 2 == 0) {
+            return number * 2
+        } else {
+            return number
+        }
+    }
+    fun restNine(number: Int):Int{
+        if (number in 10..18){
+            return number - 9
+        }else
+            return number
+
+    }
+    fun subtactFromNextTen(number: Int):Int{
+         var decena = (number/10) +1
+        var response =(decena*10)-number
+
+        return response
+    }
+   // fun  verifyIdEcuador(ced: Int):Int{
 }
