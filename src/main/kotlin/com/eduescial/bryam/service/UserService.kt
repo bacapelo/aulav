@@ -59,5 +59,8 @@ class UserService {
 
         return response
     }
-   // fun  verifyIdEcuador(ced: Int):Int{
+   /*fun  verifyIdEcuador(ced: String):Boolean{
+       return true
+   }*/
+
 }

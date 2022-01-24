@@ -32,25 +32,9 @@ class AsignaturaService {
     @PostMapping
     fun save  (asignatura: Asignatura): Asignatura {
 
-
-
         try {
             asignatura.materia?.takeIf {it.trim()?.isNotEmpty()}
                     ?: throw java.lang.Exception("materia no puede estar vacio")
-
-            if(asignatura.alumnoId!!.equals("no debe de estar vaico")){
-                    throw Exception("el alumno no puede estar vacio")}
-
-            alumnoRepository.findById(asignatura.id)
-                    ?: throw Exception("El id ${asignatura.id} del alumno no se encuentra")
-
-            if(asignatura.alumnoId!!.equals("no debe de estar vaico")){
-                throw Exception("el docente no puede estar vacio")}
-
-            docenteRepository.findById(asignatura.id)
-                    ?: throw Exception("El id ${asignatura.id} del docente no se encuentra")
-
-
             return asignaturaRepository.save(asignatura)
         }
 
