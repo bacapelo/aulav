@@ -43,7 +43,11 @@ class DocenteService {
             response.apply {
                 this.nombre = docente.nombre
             }
-            return docenteRepository.save(docente)
+            if (!valideteDocente(docente.nombre!!)){
+                throw Exception("El campo 'nombre' no pertenece a la lista")
+            } else{
+                return docenteRepository.save(docente) }
+
         }
         catch (ex: Exception) {
             throw ResponseStatusException(
@@ -87,11 +91,15 @@ class DocenteService {
         }
         return true
     }
+    val lista = listOf<String>("Juan","Roberto","Pedro")
 
-
-    fun valideteDocente(index:String): Boolean{
-        val lista = listOf<String>("Juan","Roberto","Pedro")
-        for (i lista,  lista.equals() )
+    fun valideteDocente(nombre: String): Boolean {
+        for (i in lista){
+            if (nombre == i){
+                return true
+            }
+        }
+        return false
     }
 
 

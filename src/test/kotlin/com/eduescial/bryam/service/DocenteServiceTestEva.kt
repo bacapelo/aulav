@@ -20,29 +20,29 @@ class DocenteServiceTestEva {
     @Mock
     lateinit var docenteRepository: DocenteRepository
 
-    val returnObject: Docente = Docente().apply{
-        id=4
-        cedula= "0104612312"
-        nombre="juan"
-        edad= 19
-        celular= "0987497879"
-        email="juan@gamil.com"
+    val returnObject: Docente = Docente().apply {
+        id = 4
+        cedula = "0104612312"
+        nombre = "juan"
+        edad = 19
+        celular = "0987497879"
+        email = "juan@gamil.com"
     }
-    val newObject: Docente = Docente().apply{
-        id=4
-        nombre="juan"
-        cedula= "0104612312"
-        nombre="juan"
-        edad= 19
-        celular= "0987497879"
-        email="juan@gamil.com"
+    val newObject: Docente = Docente().apply {
+        id = 4
+        nombre = "juan"
+        cedula = "0104612312"
+        nombre = "juan"
+        edad = 19
+        celular = "0987497879"
+        email = "juan@gamil.com"
     }
 
     val jsonString = File("./src/test/resources/docente/crearDocente.json").readText(Charsets.UTF_8)
     val docenteMock = Gson().fromJson(jsonString, Docente::class.java)
 
     @Test
-    fun updateIsCorrect(){
+    fun updateIsCorrect() {
         Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(returnObject)
         Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
         val response = docenteService.update(newObject)
@@ -50,7 +50,7 @@ class DocenteServiceTestEva {
     }
 
     @Test
-    fun  updateIsFailed() {
+    fun updateIsFailed() {
         Assertions.assertThrows(Exception::class.java) {
             Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(null)
             Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
@@ -62,15 +62,23 @@ class DocenteServiceTestEva {
 
 
     @Test
-    fun valideteDocenteIsPassList(){
-        val response = docenteService.valideteDocente()
-        Assertions.assertEquals(,response)
-
-
+    fun valideteDocenteIsPassList() {
+        Assertions.assertThrows(Exception::class.java) {
+            docenteMock.apply { nombre = " " }
+            Mockito.`when`(docenteRepository.findById(returnObject.id)).thenReturn(docenteMock)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(docenteMock)
+            docenteService.update(docenteMock)
+        }
     }
 
-    @Test
-    fun valideteDocenteIsNotPassList(){
 
+    @Test
+    fun valideteDocenteIsNotPassList() {
+        Assertions.assertThrows(Exception::class.java) {
+            docenteMock.apply { nombre = " " }
+            Mockito.`when`(docenteRepository.findById(returnObject.id)).thenReturn(docenteMock)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(docenteMock)
+            docenteService.update(docenteMock)
+        }
     }
 }
