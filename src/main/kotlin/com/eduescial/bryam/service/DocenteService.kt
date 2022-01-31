@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import com.eduescial.bryam.repository.DocenteRepository
 import org.springframework.http.HttpStatus
+import org.springframework.stereotype.Indexed
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -86,4 +87,13 @@ class DocenteService {
         }
         return true
     }
+
+
+    fun valideteDocente(index:String): Boolean{
+        val lista = listOf<String>("Juan","Roberto","Pedro")
+        for (i lista,  lista.equals() )
+    }
+
+
+
 }

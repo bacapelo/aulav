@@ -127,6 +127,14 @@ class DocenteServiceTest {
             Assertions.assertEquals(response, true)
         }
     }
+    @Test
+    fun valideteDocenteIsPassList(){
 
+    }
+
+    @Test
+    fun valideteDocenteIsNotPassList(){
+
+    }
 
 }
