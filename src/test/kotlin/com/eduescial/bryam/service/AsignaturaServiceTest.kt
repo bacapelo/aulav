@@ -1,5 +1,6 @@
 package com.eduescial.bryam.service
 
+import com.eduescial.bryam.model.Alumno
 import com.eduescial.bryam.model.Asignatura
 import com.eduescial.bryam.repository.AsignaturaRepository
 import com.eduescial.bryam.repository.DocenteRepository
@@ -63,7 +64,63 @@ class AsignaturaServiceTest {
             Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(asignaturaMock)
             asignaturaService.save(asignaturaMock)
         }
-
-
     }
+
+    @Test
+    fun updateIsCorrect(){
+        Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+        val response = asignaturaService.update(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+            val response = asignaturaService.update(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+
+        }
+    }
+
+    @Test
+    fun updateDescriptionIsCorrect(){
+        Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+        val response = asignaturaService.updateDescripcion(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateDescriptionIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+            val response = asignaturaService.updateDescripcion(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+        }
+    }
+
+
+    @Test
+    fun  delete() {
+        Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+        val response = asignaturaService.delete(newObject.id)
+        Assertions.assertEquals(response, true)
+    }
+
+    @Test
+    fun  deleteIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(asignaturaRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(asignaturaRepository.save(Mockito.any(Asignatura::class.java))).thenReturn(returnObject)
+            val response = asignaturaService.delete(newObject.id)
+            Assertions.assertEquals(response, true)
+        }
+    }
+
+
 }

@@ -72,4 +72,61 @@ class DocenteServiceTest {
 
 
     }
+    @Test
+    fun updateIsCorrect(){
+        Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+        val response = docenteService.update(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+            val response = docenteService.update(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+
+            }
+    }
+
+    @Test
+    fun updateDescriptionIsCorrect(){
+        Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+        val response = docenteService.updateDescripcion(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateDescriptionIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+            val response = docenteService.updateDescripcion(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+        }
+    }
+
+
+    @Test
+    fun  delete() {
+            Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(returnObject)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+            val response = docenteService.delete(newObject.id)
+            Assertions.assertEquals(response, true)
+    }
+
+    @Test
+    fun  deleteIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(docenteRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(docenteRepository.save(Mockito.any(Docente::class.java))).thenReturn(returnObject)
+            val response = docenteService.delete(newObject.id)
+            Assertions.assertEquals(response, true)
+        }
+    }
+
+
 }

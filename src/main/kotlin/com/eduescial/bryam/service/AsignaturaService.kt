@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import com.eduescial.bryam.repository.AsignaturaRepository
 import com.eduescial.bryam.repository.DocenteRepository
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 
@@ -52,10 +53,12 @@ class AsignaturaService {
 
             val response = asignaturaRepository.findById(asignatura.id)
                     ?: throw Exception("El id ${asignatura.id} de la asignatura no existe")
+
             response.apply {
                 this.materia= asignatura.materia
             }
             return asignaturaRepository.save(asignatura)
+
         }
         catch (ex: Exception) {
             throw ResponseStatusException(
@@ -69,18 +72,30 @@ class AsignaturaService {
 
             val response = asignaturaRepository.findById(asignatura.id)
                     ?: throw Exception("El id ${asignatura.id} de la asignatura no existe")
+
             response.apply {
                 this.materia= asignatura.materia
             }
+
             return asignaturaRepository.save(asignatura)
         }
+
         catch (ex: Exception) {
             throw ResponseStatusException(
                     HttpStatus.NOT_FOUND, ex.message, ex)
         }
     }
-    fun delete (id:Long): Boolean{
-        asignaturaRepository.deleteById(id)
-        return true
+    fun delete (id:Long?): Boolean{
+        try {
+            asignaturaRepository.findById(id)
+                    ?: throw Exception("No existe el id")
+
+            asignaturaRepository.deleteById(id!!)
+            return true
+
+        } catch (ex:Exception) {
+
+            throw Exception()
+        }
     }
 }

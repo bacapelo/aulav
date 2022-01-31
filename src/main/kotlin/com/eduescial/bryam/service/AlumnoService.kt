@@ -54,8 +54,17 @@ class AlumnoService {
                     HttpStatus.NOT_FOUND, "Estudiante No Encontrada", ex)
         }
     }
-    fun delete (id:Long): Boolean{
-        alumnoRepository.deleteById(id)
-        return true
+    fun delete (id:Long?): Boolean{
+        try {
+            alumnoRepository.findById(id)
+                    ?: throw Exception("No existe el id")
+
+            alumnoRepository.deleteById(id!!)
+            return true
+
+        } catch (ex:Exception) {
+
+            throw Exception()
+        }
     }
 }

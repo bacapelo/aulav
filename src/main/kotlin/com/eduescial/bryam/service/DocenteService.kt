@@ -32,11 +32,13 @@ class DocenteService {
     }
     @PutMapping
     fun update (docente: Docente): Docente {
-
         try {
+
             docente.nombre?.takeIf {it.trim()?.isEmpty() }
             val response = docenteRepository.findById(docente.id)
-                    ?: throw Exception("El id ${docente.id} el docente no existe")
+
+                    ?: throw Exception("El id ${docente.id} del docente no existe")
+
             response.apply {
                 this.nombre = docente.nombre
             }
@@ -64,11 +66,20 @@ class DocenteService {
                     HttpStatus.NOT_FOUND, ex.message, ex)
         }
     }
-    fun delete (id:Long): Boolean{
-        docenteRepository.deleteById(id)
-        return true
+    fun delete (id:Long?): Boolean {
+        try {
+            docenteRepository.findById(id)
+                    ?: throw Exception("No existe el id")
 
+            docenteRepository.deleteById(id!!)
+            return true
+
+        } catch (ex:Exception) {
+
+            throw Exception()
+        }
     }
+
     fun verifyWord(nombre: String?): Boolean{
         if(nombre?.length!!<3){
             return false

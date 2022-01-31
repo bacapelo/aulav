@@ -1,6 +1,7 @@
 package com.eduescial.bryam.service
 
 import com.eduescial.bryam.model.Alumno
+import com.eduescial.bryam.model.Docente
 import com.eduescial.bryam.repository.AlumnoRepository
 import com.eduescial.bryam.repository.DocenteRepository
 import com.google.gson.Gson
@@ -73,4 +74,62 @@ class AlumnoServiceTest {
 
 
     }
+
+    @Test
+    fun updateIsCorrect(){
+        Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+        val response = alumnoService.update(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+            val response = alumnoService.update(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+
+        }
+    }
+
+    @Test
+    fun updateDescriptionIsCorrect(){
+        Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+        val response = alumnoService.updateDescripcion(newObject)
+        Assertions.assertEquals(response.id, newObject.id)
+    }
+
+    @Test
+    fun  updateDescriptionIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+            val response = alumnoService.updateDescripcion(newObject)
+            Assertions.assertEquals(response.id, newObject.id)
+        }
+    }
+
+
+    @Test
+    fun  delete() {
+        Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(returnObject)
+        Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+        val response = alumnoService.delete(newObject.id)
+        Assertions.assertEquals(response, true)
+    }
+
+    @Test
+    fun  deleteIsFailed() {
+        Assertions.assertThrows(Exception::class.java) {
+            Mockito.`when`(alumnoRepository.findById(newObject.id)).thenReturn(null)
+            Mockito.`when`(alumnoRepository.save(Mockito.any(Alumno::class.java))).thenReturn(returnObject)
+            val response = alumnoService.delete(newObject.id)
+            Assertions.assertEquals(response, true)
+        }
+    }
+
+
 }
